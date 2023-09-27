@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:aero="http://www.aero.org#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://www.aero.org#Value">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#WeatherCondition"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#ComponentStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#EngineComponent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Overheating">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Failure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes19">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Oil_Leak"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#FailureType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#Failure"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Burner">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#EngineComponent"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes16"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes17"/>
+    <aero:isCloseTo rdf:resource="http://www.aero.org#HPT"/>
+    <aero:flowGoesFrom rdf:resource="http://www.aero.org#HPT"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#OperatingConditionParameter">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Misalignment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Failure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Failure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SourceComponent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#FailurePropagation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#HPC">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#EngineComponent"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes3"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes7"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes11"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes12"/>
+    <aero:isCloseTo rdf:resource="http://www.aero.org#Burner"/>
+    <aero:flowGoesFrom rdf:resource="http://www.aero.org#Burner"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Fan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#EngineComponent"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes1"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes5"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes8"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes13"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes18"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes19"/>
+    <aero:isCloseTo rdf:resource="http://www.aero.org#LPC"/>
+    <aero:flowGoesFrom rdf:resource="http://www.aero.org#LPC"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes21">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Corrosion"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#UnitNumber">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#Engine"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Overheating"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#MomentOfFailure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#Failure"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Misalignment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes13">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Imbalance"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Altitude">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#OperatingConditionParameter"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Core">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#EngineComponent"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes9"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes14"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes12">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Incomplete_Combustion"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes16">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Incomplete_Combustion"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes18">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Misfire"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#monitoredBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes20">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Overheating"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes15">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Leakage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Blockage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Failure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#EngineComponent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#HPT">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#EngineComponent"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes20"/>
+    <aero:isCloseTo rdf:resource="http://www.aero.org#LPT"/>
+    <aero:flowGoesFrom rdf:resource="http://www.aero.org#LPT"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes7">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Blockage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#flowGoesFrom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Leakage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Failure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Imbalance"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#LPT">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#EngineComponent"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes4"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes21"/>
+    <aero:isCloseTo rdf:resource="http://www.aero.org#Exhaust"/>
+    <aero:flowGoesFrom rdf:resource="http://www.aero.org#Exhaust"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#ConditionType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#OperatingCondition"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#WeatherCondition"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#canHave">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes14">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Misalignment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#ParameterValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#OperationalParameter"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes17">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Overheating"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SeaLevelTemperature">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#OperatingConditionParameter"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#MeasurementTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#Sensor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Bypass">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#EngineComponent"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes6"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes15"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Blockage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Exhaust">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#EngineComponent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes11">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Blockage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Overheating"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Overheating"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#FailurePropagation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#ParameterType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#OperationalParameter"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#MachNumber">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#OperatingConditionParameter"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#CycleNumber">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#Cycle"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Misfire">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Failure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes10">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Corrosion"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Incomplete_Combustion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Failure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Overheating"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorMes6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Sensor"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Leakage"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Cycle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <aero:hasMultiple rdf:resource="http://www.aero.org#OperatingConditionParameter"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#ComponentType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#EngineComponent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Engine">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <aero:hasMultiple rdf:resource="http://www.aero.org#EngineComponent"/>
+    <aero:hasMultiple rdf:resource="http://www.aero.org#Cycle"/>
+    <aero:canHave rdf:resource="http://www.aero.org#Failure"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes10"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#MeasurementValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#Sensor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#hasMultiple">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#MeasurementUnit">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#Sensor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#LPC">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#EngineComponent"/>
+    <aero:monitoredBy rdf:resource="http://www.aero.org#SensorMes2"/>
+    <aero:isCloseTo rdf:resource="http://www.aero.org#HPC"/>
+    <aero:flowGoesFrom rdf:resource="http://www.aero.org#HPC"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Imbalance">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Failure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#SensorType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#Sensor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#TargetComponent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#FailurePropagation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#PropagationProbability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://www.aero.org#FailurePropagation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Oil_Leak">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Failure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Sensor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#Corrosion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.aero.org#Failure"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#isCloseTo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.aero.org#WeatherCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+</rdf:RDF>

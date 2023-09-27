@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "red", "id": "MeasurementValue", "label": "MeasurementValue", "shape": "dot", "size": 10}, {"color": "blue", "id": "Sensor", "label": "Sensor", "shape": "dot", "size": 10}, {"color": "purple", "id": "float", "label": "float", "shape": "dot", "size": 10}, {"color": "red", "id": "MeasurementTime", "label": "MeasurementTime", "shape": "dot", "size": 10}, {"color": "purple", "id": "dateTime", "label": "dateTime", "shape": "dot", "size": 10}, {"color": "red", "id": "UnitNumber", "label": "UnitNumber", "shape": "dot", "size": 10}, {"color": "purple", "id": "int", "label": "int", "shape": "dot", "size": 10}, {"color": "blue", "id": "Engine", "label": "Engine", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes16", "label": "SensorMes16", "shape": "dot", "size": 10}, {"color": "blue", "id": "Incomplete_Combustion", "label": "Incomplete_Combustion", "shape": "dot", "size": 10}, {"color": "blue", "id": "Failure", "label": "Failure", "shape": "dot", "size": 10}, {"color": "red", "id": "CycleNumber", "label": "CycleNumber", "shape": "dot", "size": 10}, {"color": "blue", "id": "Cycle", "label": "Cycle", "shape": "dot", "size": 10}, {"color": "blue", "id": "OperatingConditionParameter", "label": "OperatingConditionParameter", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes15", "label": "SensorMes15", "shape": "dot", "size": 10}, {"color": "blue", "id": "Leakage", "label": "Leakage", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes20", "label": "SensorMes20", "shape": "dot", "size": 10}, {"color": "blue", "id": "Overheating", "label": "Overheating", "shape": "dot", "size": 10}, {"color": "blue", "id": "HPT", "label": "HPT", "shape": "dot", "size": 10}, {"color": "blue", "id": "LPT", "label": "LPT", "shape": "dot", "size": 10}, {"color": "blue", "id": "EngineComponent", "label": "EngineComponent", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes21", "label": "SensorMes21", "shape": "dot", "size": 10}, {"color": "blue", "id": "Exhaust", "label": "Exhaust", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes4", "label": "SensorMes4", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes9", "label": "SensorMes9", "shape": "dot", "size": 10}, {"color": "blue", "id": "Misalignment", "label": "Misalignment", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes13", "label": "SensorMes13", "shape": "dot", "size": 10}, {"color": "blue", "id": "Imbalance", "label": "Imbalance", "shape": "dot", "size": 10}, {"color": "red", "id": "ComponentStatus", "label": "ComponentStatus", "shape": "dot", "size": 10}, {"color": "purple", "id": "string", "label": "string", "shape": "dot", "size": 10}, {"color": "blue", "id": "HPC", "label": "HPC", "shape": "dot", "size": 10}, {"color": "blue", "id": "Burner", "label": "Burner", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes7", "label": "SensorMes7", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes3", "label": "SensorMes3", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes11", "label": "SensorMes11", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes12", "label": "SensorMes12", "shape": "dot", "size": 10}, {"color": "blue", "id": "Core", "label": "Core", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes14", "label": "SensorMes14", "shape": "dot", "size": 10}, {"color": "blue", "id": "Bypass", "label": "Bypass", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes6", "label": "SensorMes6", "shape": "dot", "size": 10}, {"color": "blue", "id": "SeaLevelTemperature", "label": "SeaLevelTemperature", "shape": "dot", "size": 10}, {"color": "blue", "id": "Blockage", "label": "Blockage", "shape": "dot", "size": 10}, {"color": "blue", "id": "Corrosion", "label": "Corrosion", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes18", "label": "SensorMes18", "shape": "dot", "size": 10}, {"color": "blue", "id": "Misfire", "label": "Misfire", "shape": "dot", "size": 10}, {"color": "red", "id": "ComponentType", "label": "ComponentType", "shape": "dot", "size": 10}, {"color": "red", "id": "SourceComponent", "label": "SourceComponent", "shape": "dot", "size": 10}, {"color": "blue", "id": "FailurePropagation", "label": "FailurePropagation", "shape": "dot", "size": 10}, {"color": "red", "id": "MeasurementUnit", "label": "MeasurementUnit", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes10", "label": "SensorMes10", "shape": "dot", "size": 10}, {"color": "red", "id": "FailureType", "label": "FailureType", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes17", "label": "SensorMes17", "shape": "dot", "size": 10}, {"color": "blue", "id": "Altitude", "label": "Altitude", "shape": "dot", "size": 10}, {"color": "red", "id": "TargetComponent", "label": "TargetComponent", "shape": "dot", "size": 10}, {"color": "blue", "id": "Fan", "label": "Fan", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes5", "label": "SensorMes5", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes8", "label": "SensorMes8", "shape": "dot", "size": 10}, {"color": "blue", "id": "LPC", "label": "LPC", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes1", "label": "SensorMes1", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes19", "label": "SensorMes19", "shape": "dot", "size": 10}, {"color": "red", "id": "MomentOfFailure", "label": "MomentOfFailure", "shape": "dot", "size": 10}, {"color": "red", "id": "ConditionType", "label": "ConditionType", "shape": "dot", "size": 10}, {"color": "purple", "id": "OperatingCondition", "label": "OperatingCondition", "shape": "dot", "size": 10}, {"color": "blue", "id": "WeatherCondition", "label": "WeatherCondition", "shape": "dot", "size": 10}, {"color": "red", "id": "SensorType", "label": "SensorType", "shape": "dot", "size": 10}, {"color": "red", "id": "PropagationProbability", "label": "PropagationProbability", "shape": "dot", "size": 10}, {"color": "blue", "id": "SensorMes2", "label": "SensorMes2", "shape": "dot", "size": 10}, {"color": "blue", "id": "MachNumber", "label": "MachNumber", "shape": "dot", "size": 10}, {"color": "red", "id": "Value", "label": "Value", "shape": "dot", "size": 10}, {"color": "blue", "id": "Oil_Leak", "label": "Oil_Leak", "shape": "dot", "size": 10}, {"color": "red", "id": "ParameterValue", "label": "ParameterValue", "shape": "dot", "size": 10}, {"color": "purple", "id": "OperationalParameter", "label": "OperationalParameter", "shape": "dot", "size": 10}, {"color": "red", "id": "ParameterType", "label": "ParameterType", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "MeasurementValue", "title": "domain", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "MeasurementValue", "title": "range", "to": "float", "width": 1}, {"arrows": "to", "from": "MeasurementTime", "title": "domain", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "MeasurementTime", "title": "range", "to": "dateTime", "width": 1}, {"arrows": "to", "from": "UnitNumber", "title": "range", "to": "int", "width": 1}, {"arrows": "to", "from": "UnitNumber", "title": "domain", "to": "Engine", "width": 1}, {"arrows": "to", "from": "SensorMes16", "title": "canHave", "to": "Incomplete_Combustion", "width": 1}, {"arrows": "to", "from": "SensorMes16", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "Incomplete_Combustion", "title": "subClassOf", "to": "Failure", "width": 1}, {"arrows": "to", "from": "CycleNumber", "title": "domain", "to": "Cycle", "width": 1}, {"arrows": "to", "from": "CycleNumber", "title": "range", "to": "int", "width": 1}, {"arrows": "to", "from": "Cycle", "title": "hasMultiple", "to": "OperatingConditionParameter", "width": 1}, {"arrows": "to", "from": "SensorMes15", "title": "canHave", "to": "Leakage", "width": 1}, {"arrows": "to", "from": "SensorMes15", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "Leakage", "title": "subClassOf", "to": "Failure", "width": 1}, {"arrows": "to", "from": "SensorMes20", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes20", "title": "canHave", "to": "Overheating", "width": 1}, {"arrows": "to", "from": "HPT", "title": "flowGoesFrom\nisCloseTo", "to": "LPT", "width": 1}, {"arrows": "to", "from": "HPT", "title": "monitoredBy", "to": "SensorMes20", "width": 1}, {"arrows": "to", "from": "HPT", "title": "subClassOf", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "LPT", "title": "monitoredBy", "to": "SensorMes21", "width": 1}, {"arrows": "to", "from": "LPT", "title": "subClassOf", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "LPT", "title": "isCloseTo\nflowGoesFrom", "to": "Exhaust", "width": 1}, {"arrows": "to", "from": "LPT", "title": "monitoredBy", "to": "SensorMes4", "width": 1}, {"arrows": "to", "from": "SensorMes9", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes9", "title": "canHave", "to": "Misalignment", "width": 1}, {"arrows": "to", "from": "SensorMes13", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes13", "title": "canHave", "to": "Imbalance", "width": 1}, {"arrows": "to", "from": "ComponentStatus", "title": "domain", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "ComponentStatus", "title": "range", "to": "string", "width": 1}, {"arrows": "to", "from": "HPC", "title": "subClassOf", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "HPC", "title": "isCloseTo\nflowGoesFrom", "to": "Burner", "width": 1}, {"arrows": "to", "from": "HPC", "title": "monitoredBy", "to": "SensorMes7", "width": 1}, {"arrows": "to", "from": "HPC", "title": "monitoredBy", "to": "SensorMes3", "width": 1}, {"arrows": "to", "from": "HPC", "title": "monitoredBy", "to": "SensorMes11", "width": 1}, {"arrows": "to", "from": "HPC", "title": "monitoredBy", "to": "SensorMes12", "width": 1}, {"arrows": "to", "from": "Core", "title": "monitoredBy", "to": "SensorMes9", "width": 1}, {"arrows": "to", "from": "Core", "title": "monitoredBy", "to": "SensorMes14", "width": 1}, {"arrows": "to", "from": "Core", "title": "subClassOf", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "Bypass", "title": "monitoredBy", "to": "SensorMes6", "width": 1}, {"arrows": "to", "from": "Bypass", "title": "monitoredBy", "to": "SensorMes15", "width": 1}, {"arrows": "to", "from": "Bypass", "title": "subClassOf", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "SensorMes6", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes6", "title": "canHave", "to": "Leakage", "width": 1}, {"arrows": "to", "from": "SeaLevelTemperature", "title": "subClassOf", "to": "OperatingConditionParameter", "width": 1}, {"arrows": "to", "from": "Misalignment", "title": "subClassOf", "to": "Failure", "width": 1}, {"arrows": "to", "from": "SensorMes7", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes7", "title": "canHave", "to": "Blockage", "width": 1}, {"arrows": "to", "from": "Corrosion", "title": "subClassOf", "to": "Failure", "width": 1}, {"arrows": "to", "from": "SensorMes18", "title": "canHave", "to": "Misfire", "width": 1}, {"arrows": "to", "from": "SensorMes18", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "Misfire", "title": "subClassOf", "to": "Failure", "width": 1}, {"arrows": "to", "from": "SensorMes14", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes14", "title": "canHave", "to": "Misalignment", "width": 1}, {"arrows": "to", "from": "ComponentType", "title": "domain", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "ComponentType", "title": "range", "to": "string", "width": 1}, {"arrows": "to", "from": "SourceComponent", "title": "range", "to": "string", "width": 1}, {"arrows": "to", "from": "SourceComponent", "title": "domain", "to": "FailurePropagation", "width": 1}, {"arrows": "to", "from": "MeasurementUnit", "title": "domain", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "MeasurementUnit", "title": "range", "to": "string", "width": 1}, {"arrows": "to", "from": "Engine", "title": "monitoredBy", "to": "SensorMes10", "width": 1}, {"arrows": "to", "from": "Engine", "title": "canHave", "to": "Failure", "width": 1}, {"arrows": "to", "from": "Engine", "title": "hasMultiple", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "Engine", "title": "hasMultiple", "to": "Cycle", "width": 1}, {"arrows": "to", "from": "SensorMes10", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes10", "title": "canHave", "to": "Corrosion", "width": 1}, {"arrows": "to", "from": "FailureType", "title": "domain", "to": "Failure", "width": 1}, {"arrows": "to", "from": "FailureType", "title": "range", "to": "string", "width": 1}, {"arrows": "to", "from": "Blockage", "title": "subClassOf", "to": "Failure", "width": 1}, {"arrows": "to", "from": "Burner", "title": "flowGoesFrom\nisCloseTo", "to": "HPT", "width": 1}, {"arrows": "to", "from": "Burner", "title": "monitoredBy", "to": "SensorMes16", "width": 1}, {"arrows": "to", "from": "Burner", "title": "subClassOf", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "Burner", "title": "monitoredBy", "to": "SensorMes17", "width": 1}, {"arrows": "to", "from": "Altitude", "title": "subClassOf", "to": "OperatingConditionParameter", "width": 1}, {"arrows": "to", "from": "TargetComponent", "title": "domain", "to": "FailurePropagation", "width": 1}, {"arrows": "to", "from": "TargetComponent", "title": "range", "to": "string", "width": 1}, {"arrows": "to", "from": "SensorMes21", "title": "canHave", "to": "Corrosion", "width": 1}, {"arrows": "to", "from": "SensorMes21", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "Fan", "title": "monitoredBy", "to": "SensorMes5", "width": 1}, {"arrows": "to", "from": "Fan", "title": "subClassOf", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "Fan", "title": "monitoredBy", "to": "SensorMes8", "width": 1}, {"arrows": "to", "from": "Fan", "title": "flowGoesFrom\nisCloseTo", "to": "LPC", "width": 1}, {"arrows": "to", "from": "Fan", "title": "monitoredBy", "to": "SensorMes1", "width": 1}, {"arrows": "to", "from": "Fan", "title": "monitoredBy", "to": "SensorMes13", "width": 1}, {"arrows": "to", "from": "Fan", "title": "monitoredBy", "to": "SensorMes18", "width": 1}, {"arrows": "to", "from": "Fan", "title": "monitoredBy", "to": "SensorMes19", "width": 1}, {"arrows": "to", "from": "SensorMes5", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes5", "title": "canHave", "to": "Blockage", "width": 1}, {"arrows": "to", "from": "MomentOfFailure", "title": "range", "to": "dateTime", "width": 1}, {"arrows": "to", "from": "MomentOfFailure", "title": "domain", "to": "Failure", "width": 1}, {"arrows": "to", "from": "ConditionType", "title": "domain", "to": "OperatingCondition", "width": 1}, {"arrows": "to", "from": "ConditionType", "title": "range", "to": "string", "width": 1}, {"arrows": "to", "from": "ConditionType", "title": "domain", "to": "WeatherCondition", "width": 1}, {"arrows": "to", "from": "SensorMes12", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes12", "title": "canHave", "to": "Incomplete_Combustion", "width": 1}, {"arrows": "to", "from": "SensorMes1", "title": "canHave", "to": "Overheating", "width": 1}, {"arrows": "to", "from": "SensorMes1", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "Overheating", "title": "subClassOf", "to": "Failure", "width": 1}, {"arrows": "to", "from": "SensorMes8", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes8", "title": "canHave", "to": "Imbalance", "width": 1}, {"arrows": "to", "from": "SensorType", "title": "range", "to": "string", "width": 1}, {"arrows": "to", "from": "SensorType", "title": "domain", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "PropagationProbability", "title": "range", "to": "float", "width": 1}, {"arrows": "to", "from": "PropagationProbability", "title": "domain", "to": "FailurePropagation", "width": 1}, {"arrows": "to", "from": "LPC", "title": "monitoredBy", "to": "SensorMes2", "width": 1}, {"arrows": "to", "from": "LPC", "title": "isCloseTo\nflowGoesFrom", "to": "HPC", "width": 1}, {"arrows": "to", "from": "LPC", "title": "subClassOf", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "SensorMes2", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes2", "title": "canHave", "to": "Overheating", "width": 1}, {"arrows": "to", "from": "SensorMes11", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes11", "title": "canHave", "to": "Blockage", "width": 1}, {"arrows": "to", "from": "MachNumber", "title": "subClassOf", "to": "OperatingConditionParameter", "width": 1}, {"arrows": "to", "from": "Value", "title": "range", "to": "float", "width": 1}, {"arrows": "to", "from": "Value", "title": "domain", "to": "WeatherCondition", "width": 1}, {"arrows": "to", "from": "Oil_Leak", "title": "subClassOf", "to": "Failure", "width": 1}, {"arrows": "to", "from": "SensorMes4", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes4", "title": "canHave", "to": "Overheating", "width": 1}, {"arrows": "to", "from": "Exhaust", "title": "subClassOf", "to": "EngineComponent", "width": 1}, {"arrows": "to", "from": "Imbalance", "title": "subClassOf", "to": "Failure", "width": 1}, {"arrows": "to", "from": "ParameterValue", "title": "domain", "to": "OperationalParameter", "width": 1}, {"arrows": "to", "from": "ParameterValue", "title": "range", "to": "float", "width": 1}, {"arrows": "to", "from": "ParameterType", "title": "domain", "to": "OperationalParameter", "width": 1}, {"arrows": "to", "from": "ParameterType", "title": "range", "to": "string", "width": 1}, {"arrows": "to", "from": "SensorMes19", "title": "canHave", "to": "Oil_Leak", "width": 1}, {"arrows": "to", "from": "SensorMes19", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes17", "title": "canHave", "to": "Overheating", "width": 1}, {"arrows": "to", "from": "SensorMes17", "title": "subClassOf", "to": "Sensor", "width": 1}, {"arrows": "to", "from": "SensorMes3", "title": "canHave", "to": "Overheating", "width": 1}, {"arrows": "to", "from": "SensorMes3", "title": "subClassOf", "to": "Sensor", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"font": {"size": 30}, "scaling": {"label": {"enabled": true, "min": 18, "max": 18}}, "size": 30}, "edges": {"smooth": true}, "physics": {"minVelocity": 2.0, "solver": "forceAtlas2Based"}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
